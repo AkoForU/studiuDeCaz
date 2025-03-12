@@ -4,16 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Importanța Utilizării Git și GitHub pentru Lucrul în Echipă</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
+        
         :root {
             --primary-color: #2ea44f;
+            --primary-dark: #22863a;
             --secondary-color: #0366d6;
             --accent-color: #6f42c1;
             --text-color: #24292e;
+            --text-light: #586069;
             --bg-color: #ffffff;
             --section-bg: #f6f8fa;
-            --card-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            --border-radius: 8px;
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --border-radius: 12px;
+            --transition: all 0.3s ease;
         }
 
         * {
@@ -23,7 +29,7 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
             line-height: 1.6;
             color: var(--text-color);
             background-color: #f8f9fa;
@@ -32,47 +38,131 @@
         }
 
         .container {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
             padding: 0 20px;
         }
 
+        /* Header styling with animated gradient */
         header {
-            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            background: linear-gradient(-45deg, #0366d6, #2ea44f, #6f42c1, #28a745);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
             color: white;
-            padding: 60px 0;
+            padding: 80px 0;
             text-align: center;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 60px;
+            box-shadow: var(--card-shadow);
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Animated particles for the header */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            animation: float 15s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+            }
+            25% {
+                transform: translateY(-20px) translateX(10px);
+            }
+            50% {
+                transform: translateY(-10px) translateX(20px);
+            }
+            75% {
+                transform: translateY(10px) translateX(-10px);
+            }
+        }
+
+        header .content {
+            position: relative;
+            z-index: 2;
         }
 
         header h1 {
-            font-size: 2.5rem;
+            font-family: 'Poppins', sans-serif;
+            font-size: 3rem;
             margin-bottom: 15px;
-            font-weight: 600;
+            font-weight: 700;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
         header p {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             max-width: 700px;
             margin: 0 auto;
             opacity: 0.9;
+            font-weight: 300;
         }
 
+        /* Main content */
         main {
             background-color: var(--bg-color);
             border-radius: var(--border-radius);
             box-shadow: var(--card-shadow);
-            padding: 40px;
-            margin-bottom: 40px;
+            padding: 50px;
+            margin-bottom: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        main::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(135deg, var(--primary-color), transparent);
+            opacity: 0.1;
+            border-radius: 0 0 0 150px;
         }
 
         h2 {
+            font-family: 'Poppins', sans-serif;
             color: var(--secondary-color);
-            margin: 30px 0 15px;
-            padding-bottom: 10px;
+            margin: 40px 0 20px;
+            padding-bottom: 12px;
             border-bottom: 2px solid #e1e4e8;
-            font-size: 1.8rem;
+            font-size: 1.9rem;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 60px;
+            height: 2px;
+            background-color: var(--primary-color);
         }
 
         h2:first-of-type {
@@ -80,71 +170,166 @@
         }
 
         p {
-            margin-bottom: 20px;
+            margin-bottom: 24px;
             font-size: 1.05rem;
-            color: #444;
+            color: var(--text-light);
+            line-height: 1.8;
         }
 
+        /* Cards with hover animation */
         .card {
             background-color: var(--section-bg);
             border-radius: var(--border-radius);
-            padding: 25px;
-            margin: 30px 0;
+            padding: 30px;
+            margin: 40px 0;
             border-left: 5px solid var(--primary-color);
             box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            width: 60px;
+            height: 60px;
+            background: var(--primary-color);
+            opacity: 0.1;
+            border-radius: 50%;
         }
 
         .resources {
             border-left: 5px solid var(--accent-color);
         }
 
+        .resources::before {
+            background: var(--accent-color);
+        }
+
+        /* Lists styling */
         ul, ol {
             padding-left: 25px;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         li {
-            margin-bottom: 12px;
+            margin-bottom: 14px;
+            color: var(--text-light);
         }
 
+        /* Links with hover animation */
         a {
             color: var(--secondary-color);
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.2s;
+            transition: var(--transition);
+            position: relative;
         }
 
         a:hover {
             color: var(--primary-color);
-            text-decoration: underline;
         }
 
+        a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        a:hover::after {
+            width: 100%;
+        }
+
+        /* Resource links with icons */
         .resource-link {
-            display: block;
-            padding: 12px 15px;
-            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            padding: 16px 20px;
+            margin-bottom: 15px;
             background-color: white;
-            border-radius: 6px;
+            border-radius: 10px;
             border: 1px solid #e1e4e8;
-            transition: all 0.3s ease;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .resource-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background-color: rgba(111, 66, 193, 0.05);
+            transition: var(--transition);
+            z-index: -1;
         }
 
         .resource-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
             border-color: var(--accent-color);
             text-decoration: none;
         }
 
-        .icon {
-            display: inline-block;
-            width: 24px;
-            height: 24px;
-            vertical-align: middle;
-            margin-right: 10px;
-            fill: var(--accent-color);
+        .resource-link:hover::before {
+            width: 100%;
         }
 
+        .resource-link:hover::after {
+            width: 0;
+        }
+
+        .icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            margin-right: 15px;
+            background-color: rgba(111, 66, 193, 0.1);
+            color: var(--accent-color);
+            border-radius: 8px;
+            transition: var(--transition);
+            font-size: 1.2rem;
+        }
+
+        .resource-link:hover .icon {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        .resource-content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .resource-title {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .resource-description {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        /* Enhanced workflow section */
         .workflow {
             display: flex;
             flex-direction: column;
@@ -154,22 +339,29 @@
 
         .step {
             position: relative;
-            padding: 15px 15px 15px 60px;
-            margin-bottom: 15px;
+            padding: 20px 20px 20px 70px;
+            margin-bottom: 20px;
             background-color: white;
             border-radius: var(--border-radius);
             box-shadow: var(--card-shadow);
             counter-increment: step;
+            transition: var(--transition);
+            border-left: 3px solid transparent;
+        }
+
+        .step:hover {
+            transform: translateX(5px);
+            border-left: 3px solid var(--primary-color);
         }
 
         .step:before {
             content: counter(step);
             position: absolute;
-            left: 15px;
+            left: 20px;
             top: 50%;
             transform: translateY(-50%);
-            width: 30px;
-            height: 30px;
+            width: 36px;
+            height: 36px;
             background-color: var(--primary-color);
             color: white;
             border-radius: 50%;
@@ -177,156 +369,385 @@
             align-items: center;
             justify-content: center;
             font-weight: bold;
+            box-shadow: 0 4px 10px rgba(46, 164, 79, 0.3);
+        }
+
+        /* Benefits list with custom icons */
+        .benefits-list {
+            list-style: none;
+            padding-left: 0;
         }
 
         .benefits-list li {
-            padding-left: 30px;
+            padding-left: 40px;
             position: relative;
+            margin-bottom: 20px;
         }
 
         .benefits-list li:before {
-            content: "✓";
+            font-family: "Font Awesome 6 Free";
+            content: "\f00c";
+            font-weight: 900;
             position: absolute;
             left: 0;
+            top: 0;
+            width: 28px;
+            height: 28px;
+            background-color: rgba(46, 164, 79, 0.1);
             color: var(--primary-color);
-            font-weight: bold;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
         }
 
+        .benefits-list strong {
+            color: var(--text-color);
+            font-weight: 600;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        /* Footer with animation */
         .footer {
             text-align: center;
-            padding: 30px 0;
-            margin-top: 40px;
-            color: #6a737d;
-            font-size: 0.9rem;
-            border-top: 1px solid #e1e4e8;
+            padding: 40px 0;
+            background-color: var(--section-bg);
+            border-radius: var(--border-radius);
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
         }
 
-        .github-icon {
+        .footer::before, .footer::after {
+            content: '';
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            opacity: 0.05;
+        }
+
+        .footer::before {
+            top: -75px;
+            left: -75px;
+        }
+
+        .footer::after {
+            bottom: -75px;
+            right: -75px;
+        }
+
+        .github-logo {
             width: 80px;
             height: 80px;
-            margin: 0 auto 20px;
-            display: block;
+            margin: 0 auto 25px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #24292e;
+            border-radius: 50%;
+            color: white;
+            font-size: 2.5rem;
+            transition: var(--transition);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
 
+        .github-logo:hover {
+            transform: rotate(15deg);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .footer p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin-bottom: 0;
+        }
+
+        /* Responsive design */
         @media (max-width: 768px) {
             header {
-                padding: 40px 0;
+                padding: 60px 0;
             }
             
             header h1 {
-                font-size: 2rem;
+                font-size: 2.2rem;
             }
             
             main {
-                padding: 25px;
+                padding: 30px;
             }
             
             h2 {
-                font-size: 1.5rem;
+                font-size: 1.6rem;
             }
+            
+            .step {
+                padding: 15px 15px 15px 60px;
+            }
+        }
+
+        /* Create 10 unique particles with different sizes, positions and delays */
+        .particle:nth-child(1) {
+            width: 15px; 
+            height: 15px; 
+            top: 20%; 
+            left: 10%;
+            animation-delay: 0s;
+        }
+        .particle:nth-child(2) {
+            width: 20px; 
+            height: 20px; 
+            top: 40%; 
+            left: 25%;
+            animation-delay: 2s;
+        }
+        .particle:nth-child(3) {
+            width: 25px; 
+            height: 25px; 
+            top: 60%; 
+            left: 15%;
+            animation-delay: 4s;
+        }
+        .particle:nth-child(4) {
+            width: 10px; 
+            height: 10px; 
+            top: 80%; 
+            left: 30%;
+            animation-delay: 6s;
+        }
+        .particle:nth-child(5) {
+            width: 15px; 
+            height: 15px; 
+            top: 30%; 
+            left: 70%;
+            animation-delay: 8s;
+        }
+        .particle:nth-child(6) {
+            width: 20px; 
+            height: 20px; 
+            top: 70%; 
+            left: 80%;
+            animation-delay: 10s;
+        }
+        .particle:nth-child(7) {
+            width: 25px; 
+            height: 25px; 
+            top: 10%; 
+            left: 50%;
+            animation-delay: 12s;
+        }
+        .particle:nth-child(8) {
+            width: 10px; 
+            height: 10px; 
+            top: 50%; 
+            left: 90%;
+            animation-delay: 14s;
+        }
+        .particle:nth-child(9) {
+            width: 18px; 
+            height: 18px; 
+            top: 90%; 
+            left: 60%;
+            animation-delay: 16s;
+        }
+        .particle:nth-child(10) {
+            width: 22px; 
+            height: 22px; 
+            top: 15%; 
+            left: 85%;
+            animation-delay: 18s;
         }
     </style>
 </head>
 <body>
     <header>
-        <div class="container">
-            <h1>Importanța Utilizării Git și GitHub pentru Lucrul în Echipă</h1>
-            <p>Sistem de control al versiunilor și platformă de colaborare pentru dezvoltarea software modernă</p>
+        <div class="particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+        <div class="container content">
+            <h1>Importanța Utilizării Git și GitHub</h1>
+            <p>Sistem avansat de control al versiunilor și platformă de colaborare pentru dezvoltarea software modernă</p>
         </div>
     </header>
 
     <div class="container">
         <main>
-            <p>În dezvoltarea software modernă, lucrul în echipă eficient este esențial pentru succesul proiectelor. Git și GitHub sunt instrumente fundamentale care facilitează colaborarea, gestionarea versiunilor și coordonarea între membrii echipei.</p>
+            <p>În dezvoltarea software modernă, lucrul în echipă eficient este esențial pentru succesul proiectelor. Git și GitHub sunt instrumente fundamentale care facilitează colaborarea, gestionarea versiunilor și coordonarea între membrii echipei, asigurând astfel un flux de lucru optimizat și o calitate superioară a produsului final.</p>
 
             <h2>Ce este Git?</h2>
-            <p>Git este un sistem de control al versiunilor distribuit, creat de Linus Torvalds în 2005. Acesta permite dezvoltatorilor să urmărească modificările în codul sursă, să lucreze în paralel pe aceleași proiecte și să integreze modificările fără conflicte majore.</p>
+            <p>Git este un sistem de control al versiunilor distribuit, creat de Linus Torvalds în 2005. Acesta permite dezvoltatorilor să urmărească modificările în codul sursă, să lucreze în paralel pe aceleași proiecte și să integreze modificările fără conflicte majore. Prin natura sa distribuită, Git oferă fiecărui dezvoltator o copie completă a istoricului proiectului, facilitând lucrul offline și asigurând redundanța datelor.</p>
 
             <h2>Ce este GitHub?</h2>
-            <p>GitHub este o platformă bazată pe web care utilizează Git și oferă funcționalități suplimentare pentru gestionarea proiectelor și colaborare. Aceasta permite stocarea codului în cloud, facilitând accesul echipelor distribuite și oferind instrumente avansate de colaborare.</p>
+            <p>GitHub este o platformă bazată pe web care utilizează Git și oferă funcționalități suplimentare pentru gestionarea proiectelor și colaborare. Aceasta permite stocarea codului în cloud, facilitând accesul echipelor distribuite și oferind instrumente avansate precum issue tracking, pull requests, acțiuni automatizate și instrumente de revizuire a codului. GitHub a revoluționat modul în care dezvoltatorii colaborează, devenind cea mai mare platformă de găzduire pentru proiecte open-source.</p>
 
             <div class="card">
                 <h2>Beneficiile Utilizării Git și GitHub pentru Lucrul în Echipă</h2>
                 <ul class="benefits-list">
-                    <li><strong>Control al versiunilor</strong> - Păstrează istoricul complet al modificărilor, permițând revenirea la versiuni anterioare când este necesar.</li>
-                    <li><strong>Lucru în paralel</strong> - Dezvoltatorii pot lucra simultan pe aceleași fișiere prin intermediul branch-urilor.</li>
-                    <li><strong>Rezolvarea conflictelor</strong> - Oferă instrumente pentru identificarea și rezolvarea conflictelor de cod.</li>
-                    <li><strong>Revizuire de cod</strong> - Prin pull requests, colegii pot revizui modificările înainte de integrarea în proiect.</li>
-                    <li><strong>Trasabilitate</strong> - Fiecare modificare este înregistrată cu autor, dată și mesaj descriptiv.</li>
-                    <li><strong>Proiecte</strong> - GitHub Projects oferă instrumente de gestionare a sarcinilor și de urmărire a progresului.</li>
+                    <li>
+                        <strong>Control eficient al versiunilor</strong> 
+                        Păstrează istoricul complet al modificărilor, permițând revenirea la versiuni anterioare când este necesar și oferind trasabilitate completă.
+                    </li>
+                    <li>
+                        <strong>Dezvoltare paralelă prin branch-uri</strong>
+                        Dezvoltatorii pot lucra simultan pe aceleași fișiere prin intermediul branch-urilor, fără a interfera unii cu alții.
+                    </li>
+                    <li>
+                        <strong>Gestionarea inteligentă a conflictelor</strong>
+                        Oferă instrumente avansate pentru identificarea și rezolvarea conflictelor de cod când multiple modificări se suprapun.
+                    </li>
+                    <li>
+                        <strong>Revizuire colaborativă a codului</strong>
+                        Prin pull requests, colegii pot revizui modificările, oferi feedback și aproba integrarea în proiect.
+                    </li>
+                    <li>
+                        <strong>Trasabilitate și responsabilitate</strong>
+                        Fiecare modificare este înregistrată cu autor, dată și mesaj descriptiv, facilitând identificarea originii modificărilor.
+                    </li>
+                    <li>
+                        <strong>Managementul avansat al proiectelor</strong>
+                        GitHub Projects oferă instrumente complexe de gestionare a sarcinilor, automatizări și vizualizări personalizabile pentru urmărirea progresului.
+                    </li>
                 </ul>
             </div>
 
             <h2>Fluxul de Lucru în Echipă cu Git</h2>
-            <p>Un flux de lucru tipic în Git pentru o echipă include următorii pași:</p>
+            <p>Un flux de lucru colaborativ în Git necesită coordonare și respectarea unor practici consecvente. Iată pașii tipici într-un proiect de echipă:</p>
             <div class="workflow">
-                <div class="step">Crearea unui repository central pe GitHub</div>
-                <div class="step">Clonarea repository-ului de către toți membrii echipei</div>
-                <div class="step">Crearea de branch-uri pentru funcționalități sau bug-fix-uri</div>
-                <div class="step">Commit-uri regulate cu mesaje descriptive</div>
-                <div class="step">Push către repository-ul remote</div>
-                <div class="step">Crearea de pull requests pentru revizuire</div>
-                <div class="step">Revizuirea codului și feedback</div>
-                <div class="step">Merge-ul codului în branch-ul principal</div>
+                <div class="step">Crearea unui repository central pe GitHub ca punct de referință pentru toți membrii echipei</div>
+                <div class="step">Clonarea repository-ului de către toți membrii echipei pentru a avea o copie locală completă</div>
+                <div class="step">Crearea de branch-uri separate pentru fiecare funcționalitate sau bug fix, pentru a izola modificările</div>
+                <div class="step">Realizarea de commit-uri regulate cu mesaje descriptive care explică clar ce s-a modificat și de ce</div>
+                <div class="step">Sincronizarea cu repository-ul remote prin push pentru a partaja modificările cu echipa</div>
+                <div class="step">Crearea de pull requests pentru a solicita integrarea modificărilor în branch-ul principal</div>
+                <div class="step">Revizuirea codului și oferirea de feedback constructiv pentru îmbunătățirea calității</div>
+                <div class="step">Merge-ul codului în branch-ul principal după aprobarea de către echipă</div>
             </div>
 
             <div class="card resources">
                 <h2>Resurse GitHub Projects</h2>
-                <p>GitHub Projects este un instrument puternic pentru planificarea și urmărirea sarcinilor în cadrul unui proiect. Iată câteva resurse oficiale pentru a începe:</p>
+                <p>GitHub Projects este un instrument puternic pentru planificarea și urmărirea sarcinilor în cadrul unui proiect. Folosind aceste resurse oficiale, vei putea implementa un sistem eficient de management pentru echipa ta:</p>
                 
                 <a href="https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects/about-projects" target="_blank" class="resource-link">
-                    <svg class="icon" viewBox="0 0 16 16" fill="currentColor">
-                        <path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h7A2.5 2.5 0 0 1 14 2.5v10.5a.5.5 0 0 1-.777.416L8 10.764l-5.223 2.652A.5.5 0 0 1 2 13V2.5zm2.5-1a1.5 1.5 0 0 0-1.5 1.5v9.793l4.723-2.482a.5.5 0 0 1 .554 0L13 12.293V2.5a1.5 1.5 0 0 0-1.5-1.5h-7z"/>
-                    </svg>
-                    Despre Projects - Informații generale despre GitHub Projects
+                    <div class="icon">
+                        <i class="fa-solid fa-book"></i>
+                    </div>
+                    <div class="resource-content">
+                        <div class="resource-title">Despre GitHub Projects</div>
+                        <div class="resource-description">Ghid complet despre conceptele și capacitățile GitHub Projects</div>
+                    </div>
                 </a>
                 
                 <a href="https://docs.github.com/en/issues/planning-and-tracking-with-projects/creating-projects/creating-a-project" target="_blank" class="resource-link">
-                    <svg class="icon" viewBox="0 0 16 16" fill="currentColor">
-                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                    </svg>
-                    Crearea unui proiect - Ghid pas cu pas pentru crearea unui proiect nou
+                    <div class="icon">
+                        <i class="fa-solid fa-plus"></i>
+                    </div>
+                    <div class="resource-content">
+                        <div class="resource-title">Crearea unui proiect nou</div>
+                        <div class="resource-description">Instrucțiuni pas cu pas pentru configurarea unui proiect personalizat</div>
+                    </div>
                 </a>
                 
                 <a href="https://docs.github.com/en/issues/planning-and-tracking-with-projects/creating-projects/copying-an-existing-project" target="_blank" class="resource-link">
-                    <svg class="icon" viewBox="0 0 16 16" fill="currentColor">
-                        <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
-                        <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
-                    </svg>
-                    Copierea unui proiect existent - Cum să utilizați un proiect existent ca șablon
+                    <div class="icon">
+                        <i class="fa-solid fa-copy"></i>
+                    </div>
+                    <div class="resource-content">
+                        <div class="resource-title">Copierea unui proiect existent</div>
+                        <div class="resource-description">Cum să utilizați un proiect existent ca șablon pentru a economisi timp</div>
+                    </div>
                 </a>
                 
                 <a href="https://docs.github.com/en/issues/planning-and-tracking-with-projects/creating-projects/migrating-from-projects-classic" target="_blank" class="resource-link">
-                    <svg class="icon" viewBox="0 0 16 16" fill="currentColor">
-                        <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z"/>
-                        <path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z"/>
-                    </svg>
-                    Migrarea de la Projects Classic - Ghid pentru migrarea de la versiunea anterioară
+                    <div class="icon">
+                        <i class="fa-solid fa-arrow-right-arrow-left"></i>
+                    </div>
+                    <div class="resource-content">
+                        <div class="resource-title">Migrarea de la Projects Classic</div>
+                        <div class="resource-description">Ghid pentru trecerea la noua versiune cu funcționalități avansate</div>
+                    </div>
                 </a>
             </div>
 
             <h2>Bune Practici pentru Lucrul în Echipă cu Git</h2>
             <ul>
-                <li><strong>Faceți commit-uri mici și frecvente</strong> - Permite urmărirea mai bună a modificărilor și facilitează identificarea problemelor.</li>
-                <li><strong>Scrieți mesaje de commit descriptive</strong> - Oferă context și ajută echipa să înțeleagă motivul modificărilor.</li>
-                <li><strong>Actualizați repository-ul local</strong> - Sincronizați cu repository-ul remote înainte de a începe lucrul pentru a preveni conflictele.</li>
-                <li><strong>Utilizați branch-uri pentru funcționalități</strong> - Separați dezvoltarea funcționalităților noi sau corectărilor de bugs.</li>
-                <li><strong>Revizuiți codul colegilor</strong> - Oferiți feedback constructiv și contribuiți la îmbunătățirea calității codului.</li>
-                <li><strong>Documentați proiectul</strong> - Creați un README.md detaliat cu instrucțiuni de instalare și utilizare.</li>
-                <li><strong>Utilizați GitHub Projects</strong> - Organizați și urmăriți sarcinile pentru a menține proiectul pe drumul cel bun.</li>
+                <li><strong>Faceți commit-uri mici și frecvente</strong> - Permite urmărirea mai bună a modificărilor și facilitează identificarea problemelor. Un commit ar trebui să reprezinte o singură schimbare logică.</li>
+                <li><strong>Scrieți mesaje de commit descriptive</strong> - Folosiți un format consistent, începeți cu un verb și oferiți detalii suficiente despre modificări pentru a înțelege contextul.</li>
+                <li><strong>Actualizați repository-ul local frecvent</strong> - Sincronizați periodic cu repository-ul remote (git pull) pentru a integra modificările colegilor și a preveni conflictele majore.</li>
+                <li><strong>Utilizați branch-uri pentru orice modificare</strong> - Creați branch-uri separate pentru fiecare funcționalitate nouă, bug fix sau experiment pentru a izola schimbările.</li>
+                <li><strong>Participați activ la revizuirea codului</strong> - Oferiți feedback constructiv, căutați probleme potențiale și învățați din codul colegilor pentru a îmbunătăți calitatea generală.</li>
+                <li><strong>Documentați proiectul în detaliu</strong> - Creați un README.md complet cu instrucțiuni de instalare, configurare, utilizare și contribuție.</li>
+                <li><strong>Implementați GitHub Projects pentru organizare</strong> - Utilizați board-uri pentru vizualizarea sarcinilor, automatizări pentru actualizări de status și etichete pentru categorisire.</li>
             </ul>
 
             <h2>Concluzie</h2>
-            <p>Git și GitHub sunt instrumente esențiale pentru dezvoltarea software modernă în echipă. Ele facilitează colaborarea, asigură versionarea corectă a codului și oferă instrumente avansate de gestionare a proiectelor. Prin utilizarea acestor instrumente și urmarea bunelor practici, echipele pot lucra mai eficient și pot livra proiecte de calitate mai ridicată.</p>
+            <p>Git și GitHub reprezintă fundația colaborării moderne în dezvoltarea software. Aceste instrumente nu doar că facilitează gestionarea codului și a versiunilor, dar transformă complet modul în care echipele lucrează împreună. Adoptarea acestor tehnologii și a bunelor practici asociate conduce la o productivitate sporită, o calitate mai bună a codului și o comunicare îmbunătățită între membrii echipei. Indiferent de dimensiunea proiectului sau a echipei, investiția în învățarea și utilizarea eficientă a Git și GitHub va aduce beneficii semnificative pe termen lung.</p>
         </main>
 
         <footer class="footer">
-            <svg class="github-icon" viewBox="0 0 16 16" fill="currentColor">
-                <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
-            </svg>
+            <div class="github-logo">
+                <i class="fa-brands fa-github"></i>
+            </div>
             <p>© 2025 Studiu de Caz: Importanța Utilizării Git și GitHub pentru Lucrul în Echipă</p>
         </footer>
     </div>
+
+    <script>
+        // Animație simplă pentru elementele de pe pagină la scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.card');
+            const steps = document.querySelectorAll('.step');
+            
+            function checkScroll() {
+                let triggerBottom = window.innerHeight * 0.8;
+                
+                cards.forEach(card => {
+                    let cardTop = card.getBoundingClientRect().top;
+                    if (cardTop < triggerBottom) {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }
+                });
+                
+                steps.forEach(step => {
+                    let stepTop = step.getBoundingClientRect().top;
+                    if (stepTop < triggerBottom) {
+                        step.style.opacity = '1';
+                        step.style.transform = 'translateX(0)';
+                    }
+                });
+            }
+            
+            // Setează stilurile inițiale
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            });
+            
+            steps.forEach(step => {
+                step.style.opacity = '0';
+                step.style.transform = 'translateX(-20px)';
+                step.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            });
+            
+            // Verifică la încărcarea paginii
+            checkScroll();
+            
+            // Verifică la scroll
+            window.addEventListener('scroll', checkScroll);
+        });
+    </script>
 </body>
 </html>
