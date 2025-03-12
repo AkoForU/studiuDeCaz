@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Importanța Utilizării Git și GitHub pentru Lucrul în Echipă</title>
+    <style>
+        :root {
+            --primary-color: #2ea44f;
+            --secondary-color: #0366d6;
+            --accent-color: #6f42c1;
+            --text-color: #24292e;
+            --bg-color: #ffffff;
+            --section-bg: #f6f8fa;
+            --card-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            --border-radius: 8px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f8f9fa;
+            padding: 0;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        main {
+            background-color: var(--bg-color);
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+            padding: 40px;
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            color: var(--secondary-color);
+            margin: 30px 0 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e1e4e8;
+            font-size: 1.8rem;
+        }
+
+        h2:first-of-type {
+            margin-top: 0;
+        }
+
+        p {
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+            color: #444;
+        }
+
+        .card {
+            background-color: var(--section-bg);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            margin: 30px 0;
+            border-left: 5px solid var(--primary-color);
+            box-shadow: var(--card-shadow);
+        }
+
+        .resources {
+            border-left: 5px solid var(--accent-color);
+        }
+
+        ul, ol {
+            padding-left: 25px;
+            margin-bottom: 20px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        a:hover {
+            color: var(--primary-color);
+            text-decoration: underline;
+        }
+
+        .resource-link {
+            display: block;
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            background-color: white;
+            border-radius: 6px;
+            border: 1px solid #e1e4e8;
+            transition: all 0.3s ease;
+        }
+
+        .resource-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        .icon {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            vertical-align: middle;
+            margin-right: 10px;
+            fill: var(--accent-color);
+        }
+
+        .workflow {
+            display: flex;
+            flex-direction: column;
+            counter-reset: step;
+            margin: 30px 0;
+        }
+
+        .step {
+            position: relative;
+            padding: 15px 15px 15px 60px;
+            margin-bottom: 15px;
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+            counter-increment: step;
+        }
+
+        .step:before {
+            content: counter(step);
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 30px;
+            height: 30px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .benefits-list li {
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .benefits-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 40px;
+            color: #6a737d;
+            font-size: 0.9rem;
+            border-top: 1px solid #e1e4e8;
+        }
+
+        .github-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 40px 0;
+            }
+            
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            main {
+                padding: 25px;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Importanța Utilizării Git și GitHub pentru Lucrul în Echipă</h1>
+            <p>Sistem de control al versiunilor și platformă de colaborare pentru dezvoltarea software modernă</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <main>
+            <p>În dezvoltarea software modernă, lucrul în echipă eficient este esențial pentru succesul proiectelor. Git și GitHub sunt instrumente fundamentale care facilitează colaborarea, gestionarea versiunilor și coordonarea între membrii echipei.</p>
+
+            <h2>Ce este Git?</h2>
+            <p>Git este un sistem de control al versiunilor distribuit, creat de Linus Torvalds în 2005. Acesta permite dezvoltatorilor să urmărească modificările în codul sursă, să lucreze în paralel pe aceleași proiecte și să integreze modificările fără conflicte majore.</p>
+
+            <h2>Ce este GitHub?</h2>
+            <p>GitHub este o platformă bazată pe web care utilizează Git și oferă funcționalități suplimentare pentru gestionarea proiectelor și colaborare. Aceasta permite stocarea codului în cloud, facilitând accesul echipelor distribuite și oferind instrumente avansate de colaborare.</p>
+
+            <div class="card">
+                <h2>Beneficiile Utilizării Git și GitHub pentru Lucrul în Echipă</h2>
+                <ul class="benefits-list">
+                    <li><strong>Control al versiunilor</strong> - Păstrează istoricul complet al modificărilor, permițând revenirea la versiuni anterioare când este necesar.</li>
+                    <li><strong>Lucru în paralel</strong> - Dezvoltatorii pot lucra simultan pe aceleași fișiere prin intermediul branch-urilor.</li>
+                    <li><strong>Rezolvarea conflictelor</strong> - Oferă instrumente pentru identificarea și rezolvarea conflictelor de cod.</li>
+                    <li><strong>Revizuire de cod</strong> - Prin pull requests, colegii pot revizui modificările înainte de integrarea în proiect.</li>
+                    <li><strong>Trasabilitate</strong> - Fiecare modificare este înregistrată cu autor, dată și mesaj descriptiv.</li>
+                    <li><strong>Proiecte</strong> - GitHub Projects oferă instrumente de gestionare a sarcinilor și de urmărire a progresului.</li>
+                </ul>
+            </div>
+
+            <h2>Fluxul de Lucru în Echipă cu Git</h2>
+            <p>Un flux de lucru tipic în Git pentru o echipă include următorii pași:</p>
+            <div class="workflow">
+                <div class="step">Crearea unui repository central pe GitHub</div>
+                <div class="step">Clonarea repository-ului de către toți membrii echipei</div>
+                <div class="step">Crearea de branch-uri pentru funcționalități sau bug-fix-uri</div>
+                <div class="step">Commit-uri regulate cu mesaje descriptive</div>
+                <div class="step">Push către repository-ul remote</div>
+                <div class="step">Crearea de pull requests pentru revizuire</div>
+                <div class="step">Revizuirea codului și feedback</div>
+                <div class="step">Merge-ul codului în branch-ul principal</div>
+            </div>
+
+            <div class="card resources">
+                <h2>Resurse GitHub Projects</h2>
+                <p>GitHub Projects este un instrument puternic pentru planificarea și urmărirea sarcinilor în cadrul unui proiect. Iată câteva resurse oficiale pentru a începe:</p>
+                
+                <a href="https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects/about-projects" target="_blank" class="resource-link">
+                    <svg class="icon" viewBox="0 0 16 16" fill="currentColor">
+                        <path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h7A2.5 2.5 0 0 1 14 2.5v10.5a.5.5 0 0 1-.777.416L8 10.764l-5.223 2.652A.5.5 0 0 1 2 13V2.5zm2.5-1a1.5 1.5 0 0 0-1.5 1.5v9.793l4.723-2.482a.5.5 0 0 1 .554 0L13 12.293V2.5a1.5 1.5 0 0 0-1.5-1.5h-7z"/>
+                    </svg>
+                    Despre Projects - Informații generale despre GitHub Projects
+                </a>
+                
+                <a href="https://docs.github.com/en/issues/planning-and-tracking-with-projects/creating-projects/creating-a-project" target="_blank" class="resource-link">
+                    <svg class="icon" viewBox="0 0 16 16" fill="currentColor">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                    </svg>
+                    Crearea unui proiect - Ghid pas cu pas pentru crearea unui proiect nou
+                </a>
+                
+                <a href="https://docs.github.com/en/issues/planning-and-tracking-with-projects/creating-projects/copying-an-existing-project" target="_blank" class="resource-link">
+                    <svg class="icon" viewBox="0 0 16 16" fill="currentColor">
+                        <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+                        <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+                    </svg>
+                    Copierea unui proiect existent - Cum să utilizați un proiect existent ca șablon
+                </a>
+                
+                <a href="https://docs.github.com/en/issues/planning-and-tracking-with-projects/creating-projects/migrating-from-projects-classic" target="_blank" class="resource-link">
+                    <svg class="icon" viewBox="0 0 16 16" fill="currentColor">
+                        <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z"/>
+                        <path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z"/>
+                    </svg>
+                    Migrarea de la Projects Classic - Ghid pentru migrarea de la versiunea anterioară
+                </a>
+            </div>
+
+            <h2>Bune Practici pentru Lucrul în Echipă cu Git</h2>
+            <ul>
+                <li><strong>Faceți commit-uri mici și frecvente</strong> - Permite urmărirea mai bună a modificărilor și facilitează identificarea problemelor.</li>
+                <li><strong>Scrieți mesaje de commit descriptive</strong> - Oferă context și ajută echipa să înțeleagă motivul modificărilor.</li>
+                <li><strong>Actualizați repository-ul local</strong> - Sincronizați cu repository-ul remote înainte de a începe lucrul pentru a preveni conflictele.</li>
+                <li><strong>Utilizați branch-uri pentru funcționalități</strong> - Separați dezvoltarea funcționalităților noi sau corectărilor de bugs.</li>
+                <li><strong>Revizuiți codul colegilor</strong> - Oferiți feedback constructiv și contribuiți la îmbunătățirea calității codului.</li>
+                <li><strong>Documentați proiectul</strong> - Creați un README.md detaliat cu instrucțiuni de instalare și utilizare.</li>
+                <li><strong>Utilizați GitHub Projects</strong> - Organizați și urmăriți sarcinile pentru a menține proiectul pe drumul cel bun.</li>
+            </ul>
+
+            <h2>Concluzie</h2>
+            <p>Git și GitHub sunt instrumente esențiale pentru dezvoltarea software modernă în echipă. Ele facilitează colaborarea, asigură versionarea corectă a codului și oferă instrumente avansate de gestionare a proiectelor. Prin utilizarea acestor instrumente și urmarea bunelor practici, echipele pot lucra mai eficient și pot livra proiecte de calitate mai ridicată.</p>
+        </main>
+
+        <footer class="footer">
+            <svg class="github-icon" viewBox="0 0 16 16" fill="currentColor">
+                <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+            </svg>
+            <p>© 2025 Studiu de Caz: Importanța Utilizării Git și GitHub pentru Lucrul în Echipă</p>
+        </footer>
+    </div>
+</body>
+</html>
